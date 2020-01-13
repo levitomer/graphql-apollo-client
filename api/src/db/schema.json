@@ -1,0 +1,12 @@
+{
+	"user": {
+		"id": "string",
+		"username": "string"
+	},
+	"movie": {
+		"id": "string",
+		"createdAt": "number",
+		"name": "string",
+		"type": "string"
+	}
+}
