@@ -1,10 +1,24 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
 
-const options = [ { value: 'CAT', label: 'Cat' }, { value: 'DOG', label: 'Dog' } ];
+const options = [
+	{ value: 'ACTION', label: 'Action' },
+	{ value: 'ADVENTURE', label: 'Adventure' },
+	{ value: 'COMEDY', label: 'Comedy' },
+	{ value: 'CRIME', label: 'Crime' },
+	{ value: 'DRAMA', label: 'Drama' },
+	{ value: 'FANTASY', label: 'Fantasy' },
+	{ value: 'HISTORICAL', label: 'Historical' },
+	{ value: 'HORROR', label: 'Horror' },
+	{ value: 'MYSTERY', label: 'Mystery' },
+	{ value: 'ROMANCE', label: 'Romance' },
+	{ value: 'FICTION', label: 'Fiction' },
+	{ value: 'CARTOON', label: 'Cartoon' },
+	{ value: 'WESTERN', label: 'Western' }
+];
 
 export default function NewMovie({ onSubmit, onCancel }) {
-	const [ type, setType ] = useState('DOG');
+	const [ type, setType ] = useState(options[0]);
 	const [ name, setName ] = useState('');
 
 	const activeOption = options.find(o => o.value === type);
@@ -22,7 +36,7 @@ export default function NewMovie({ onSubmit, onCancel }) {
 	return (
 		<div className="new-movie page">
 			<h1>New Movie</h1>
-			<div className="box">
+			<div>
 				<form onSubmit={submit}>
 					<Select
 						value={activeOption}

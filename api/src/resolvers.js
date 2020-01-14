@@ -4,11 +4,17 @@
  */
 
 module.exports = {
+	Mutation: {},
 	Query: {},
-	// Mutation: {},
 	Movie: {
+		type(movie) {
+			return movie.type;
+		},
+		name(movie) {
+			return movie.name;
+		},
 		img(movie) {
-			return `https://www.theprintworks.com/wp-content/themes/psBella/assets/img/film-poster-placeholder.png`;
+			return `https://rickandmortyapi.com/api/character/avatar/${movie.id}.jpeg`;
 		}
 	}
 	// User: {}

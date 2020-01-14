@@ -11,8 +11,20 @@ const GET_MOVIES = gql`
 			results {
 				id
 				name
+				type
 				image
 			}
+		}
+	}
+`;
+
+const NEW_MOVIE = gql`
+	mutation CreateMovie($newMovie: MovieInput!) {
+		createMovie(input: $newMovie) {
+			id
+			name
+			type
+			image
 		}
 	}
 `;
@@ -20,15 +32,21 @@ const GET_MOVIES = gql`
 export default function Movies() {
 	const [ modal, setModal ] = useState(false);
 	const { loading, error, data } = useQuery(GET_MOVIES);
+	const [ createMovie, newMovie ] = useMutation(NEW_MOVIE);
 	const onSubmit = input => {
 		setModal(false);
+		createMovie({
+			variables: {
+				newMovie: input
+			}
+		});
 	};
 
-	if (loading) {
+	if (loading || newMovie.loading) {
 		return <Loader />;
 	}
 
-	if (error) {
+	if (error || newMovie.error) {
 		<p>Error</p>;
 	}
 
